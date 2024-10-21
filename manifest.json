@@ -18,7 +18,8 @@
     },
     "default_title": "DSW - Next week"
   },
-  "permissions": ["activeTab", "scripting"],
+  "permissions": [ "activeTab", "tabs", "background", "scripting", "contentSettings" ],
+  "host_permissions": [ "http://*/*", "https://*/*" ],
   "background": {
     "service_worker": "background.js"
   }
