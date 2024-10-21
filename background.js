@@ -14,31 +14,13 @@ function onLoadDSW(changeInfo, tab) {
     }
 }
 
-function onChangeDSW(givenPage) {
-    if (prefixes.some(prefix => givenPage.startsWith(prefix))) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (!onLoadDSW(changeInfo, tab)) {
         return;
     }
 
-    // continue code here
-})
-
-chrome.tabs.onActivated.addListener(function (activeInfo) {
-    var currentPage;
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        currentPage = tabs[0].url;
-        if (!onChangeDSW(currentPage)) {
-            return;
-        }
-
-        // continue code here
+    chrome.scripting.executeScript({
+        target: { tabId: tabId }, 
+        files: ['content.js']        
     });
 })

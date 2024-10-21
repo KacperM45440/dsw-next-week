@@ -20,6 +20,13 @@
   },
   "permissions": [ "activeTab", "tabs", "background", "scripting", "contentSettings" ],
   "host_permissions": [ "http://*/*", "https://*/*" ],
+  "content_scripts": [
+    {
+      "matches": [ "https://harmonogramy.dsw.edu.pl/Plany/*" ],
+      "js": [ "content.js" ],
+      "run_at": "document_idle"
+    }
+  ],
   "background": {
     "service_worker": "background.js"
   }
