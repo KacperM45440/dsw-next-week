@@ -1,16 +1,10 @@
-function RadioButtonZmiana(radioBt) {
-    var d = radioBt.value.split('\\');
-    var year = d[0].split(',')[0];
-    var month = d[0].split(',')[1] - 1;
-    var day = d[0].split(',')[2];
-    var d1 = new Date(year, month, day);
-    year = d[1].split(',')[0];
-    month = d[1].split(',')[1] - 1;
-    day = d[1].split(',')[2];
-    var d2 = new Date(year, month, day);
-    MVCxDataOd.SetDate(d1);
-    MVCxDataDo.SetDate(d2);
+function injectScript() {
+    var s = document.createElement('script');
+    var injectUrl = chrome.runtime.getURL('inject.js'); // This method works despite throwing an error
+    s.src = injectUrl;
+    (document.head || document.documentElement).appendChild(s);
 }
+
 function addRadio() {
     if (document.getElementById("RadioList_Termin1.5") != null) {
         return;
@@ -40,8 +34,8 @@ function addRadio() {
 
     let nextMondayFormattedRadio = `${year},${month.toString().padStart(2, '0')},${day.toString().padStart(2, '0')}`;
     let endOfWeekFormattedRadio = `${endYear},${endMonth.toString().padStart(2, '0')},${endDay.toString().padStart(2, '0')}`;
-    let nextMondayFormattedData = `${day.toString().padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`;
-    let endOfWeekFormattedData = `${endDay.toString().padStart(2, '0')}.${endMonth.toString().padStart(2, '0')}.${endYear}`;
+    //let nextMondayFormattedData = `${day.toString().padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`;
+    //let endOfWeekFormattedData = `${endDay.toString().padStart(2, '0')}.${endMonth.toString().padStart(2, '0')}.${endYear}`;
 
     let newDiv = document.createElement('div');
     newDiv.className = 'custom-control custom-radio custom-control-inline radio-margin';
@@ -57,15 +51,11 @@ function addRadio() {
     newLabel.className = 'custom-control-label';
     newLabel.htmlFor = newRadio.id;
     newLabel.textContent = 'Nastepny tydzien';
-    newRadio.onclick = function () {
-        document.getElementById('DataOd_I').value = nextMondayFormattedData;
-        document.getElementById('DataDo_I').value = endOfWeekFormattedData;
-        radioContainer.lastChild.value = '{"DataOd":new Date('+nextMondayFormattedRadio+'),"DataDo":new Date('+endOfWeekFormattedRadio+')}'
-    };
 
     newDiv.appendChild(newRadio);
     newDiv.appendChild(newLabel);
     radioContainer.insertBefore(newDiv, radioContainer.childNodes[4]);
 }
 
+injectScript();
 addRadio();
