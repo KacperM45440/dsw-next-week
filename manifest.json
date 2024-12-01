@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "DSW - Next week",
   "description": "Add a 'Next week' button to DSW's course schedule.",
-  "version": "1.0",
+  "version": "1.0.1",
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
@@ -18,7 +18,7 @@
     },
     "default_title": "DSW - Next week"
   },
-  "permissions": [ "activeTab", "tabs", "background", "scripting", "contentSettings" ],
+  "permissions": [ "activeTab", "tabs", "background", "scripting" ],
   "host_permissions": [ "http://*/*", "https://*/*" ],
   "externally_connectable": {
     "matches": [ "https://harmonogramy.dsw.edu.pl/Plany/*" ]
