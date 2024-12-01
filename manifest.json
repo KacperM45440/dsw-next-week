@@ -18,8 +18,7 @@
     },
     "default_title": "DSW - Next week"
   },
-  "permissions": [ "activeTab", "tabs", "background", "scripting" ],
-  "host_permissions": [ "http://*/*", "https://*/*" ],
+  "permissions": [ "activeTab", "tabs", "background", "scripting", "https://harmonogramy.dsw.edu.pl/*" ],
   "externally_connectable": {
     "matches": [ "https://harmonogramy.dsw.edu.pl/Plany/*" ]
   },
