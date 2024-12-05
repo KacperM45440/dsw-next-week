@@ -36,12 +36,37 @@ function addRadio() {
     const newLabel = document.createElement('label');
     newLabel.className = 'custom-control-label';
     newLabel.htmlFor = newRadio.id;
-    newLabel.textContent = 'Nastepny tydzien';
 
     newDiv.appendChild(newRadio);
     newDiv.appendChild(newLabel);
     radioContainer.insertBefore(newDiv, radioContainer.childNodes[4]);
 }
 
+function adjustLanguage() {
+    language = document.querySelector('.ul-jezyki .btn-warningCustom img').alt;
+    nextWeekLabel = document.getElementById('RadioList_Termin1.5').labels[0];
+    switch (language) {
+        case 'pl':
+            nextWeekLabel.innerHTML = 'Nast&#281;pny tydzie&#324;';
+            break;
+        case 'gb':
+        case 'en':
+            nextWeekLabel.innerHTML = 'Next week';
+            break;
+        case 'ru':
+            nextWeekLabel.innerHTML = '&#x041D;&#x0430;&#x0020;&#x0441;&#x043B;&#x0435;&#x0434;&#x0443;&#x044E;&#x0449;&#x0435;&#x0439;&#x0020;&#x043D;&#x0435;&#x0434;&#x0435;&#x043B;&#x0435;';
+            break;
+        case 'uk':
+        case 'ua':
+            nextWeekLabel.innerHTML = 'Next week';
+            break;
+        default:
+            console.error("No valid language found.")
+            break;
+    }
+}
+
 injectScript();
 addRadio();
+adjustLanguage();
+
